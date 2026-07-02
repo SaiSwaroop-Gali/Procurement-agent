@@ -4,6 +4,32 @@ An AI-powered, human-in-the-loop procurement system that monitors inventory leve
 
 ---
 
+## 📖 Project Overview
+
+The core idea behind this project is to develop a lightweight, AI-powered, human-in-the-loop procurement platform that can be deployed across logistics-driven industries that cannot afford large-scale enterprise solutions such as SAP.
+
+Many small and medium-sized organizations still rely on spreadsheets, manual approvals, emails, and phone calls to manage procurement activities. While enterprise ERP systems provide advanced automation capabilities, their implementation, customization, and maintenance costs are often prohibitive for traditional businesses operating with limited budgets and IT resources.
+
+This project demonstrates how modern AI agents, combined with affordable cloud AI services such as Gemini, can deliver enterprise-like procurement automation at a fraction of the cost. Organizations can leverage Gemini Enterprise plans to build intelligent procurement workflows without investing in expensive ERP ecosystems.
+
+A key design principle of this system is the **Human-in-the-Loop (HITL) AI approach**. The objective is not to replace procurement managers but to augment their decision-making capabilities. AI agents handle repetitive operational tasks such as inventory monitoring, risk assessment, email generation, and supplier communication, while humans retain complete control over procurement decisions through approval, rejection, or modification workflows.
+
+Although the proposed solution is industry-agnostic and can be adapted for manufacturing, warehousing, retail logistics, healthcare supply chains, and maintenance operations, this implementation uses an imaginary Airline Supply Chain Management company as a case study. The aviation domain provides an excellent demonstration environment because it involves critical spare parts, strict operational requirements, and time-sensitive procurement decisions.
+
+In a real-world deployment, the procurement agent would connect directly to live databases or ERP systems to continuously monitor inventory levels and automatically trigger procurement workflows based on scheduled intervals or event-driven mechanisms. Due to limited infrastructure and resource constraints within this project, a static dataset was created to simulate real business operations. The prototype uses:
+
+- 22 different aircraft parts
+- 6 different suppliers
+- Static inventory datasets representing an imaginary enterprise database
+
+The current implementation operates through command-based execution, where procurement runs are triggered manually for demonstration purposes. However, the underlying architecture supports scheduled execution and real-time data integration with minimal modifications, enabling organizations to transition from prototype to production environments.
+
+The system continuously monitors inventory levels, evaluates business risks associated with low-stock items, notifies managers through Telegram, understands natural-language instructions such as *"add 10 more units and make it urgent"*, generates professional purchase-order emails using Gemini, and maintains a human-in-the-loop approval process to ensure that final procurement decisions always remain under managerial control.
+
+Ultimately, the goal is to make intelligent procurement support accessible to organizations that traditionally could not justify enterprise-scale solutions, providing a practical pathway toward AI-enabled logistics and supply chain automation.
+
+---
+
 ## 📌 Problem Statement
 
 Airline maintenance operations depend on timely availability of critical spare parts. Traditional procurement workflows often involve:

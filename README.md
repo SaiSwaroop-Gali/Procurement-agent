@@ -6,7 +6,7 @@ An AI-powered, human-in-the-loop procurement system that monitors inventory leve
 
 ## 📖 Project Overview
 
-The core idea behind this project is to develop a lightweight, AI-powered, human-in-the-loop procurement AI Agentic platform that can be deployed across logistics-driven industries that cannot afford large-scale enterprise solutions such as SAP.
+The core idea behind this project is to develop a lightweight, AI-powered, human-in-the-loop procurement Agentic platform that can be deployed across logistics-driven industries that cannot afford large-scale enterprise solutions such as SAP.
 
 Many small and medium-sized organizations still rely on spreadsheets, manual approvals, emails, and phone calls to manage procurement activities. While enterprise ERP systems provide advanced automation capabilities, their implementation, customization, and maintenance costs are often prohibitive for traditional businesses operating with limited budgets and IT resources.
 

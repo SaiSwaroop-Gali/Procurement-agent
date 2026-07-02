@@ -6,27 +6,25 @@ An AI-powered, human-in-the-loop procurement system that monitors inventory leve
 
 ## 📖 Project Overview
 
-The core idea behind this project is to develop a lightweight, AI-powered, human-in-the-loop procurement Agentic platform that can be deployed across logistics-driven industries that cannot afford large-scale enterprise solutions such as SAP.
+The idea behind this project is to develop an AI-powered Procurement Agent that can support procurement workflows in logistics-intensive industries, particularly small and medium-sized organizations that cannot afford large-scale ERP solutions such as SAP.
 
-Many small and medium-sized organizations still rely on spreadsheets, manual approvals, emails, and phone calls to manage procurement activities. While enterprise ERP systems provide advanced automation capabilities, their implementation, customization, and maintenance costs are often prohibitive for traditional businesses operating with limited budgets and IT resources.
+Rather than building another procurement platform, the goal is to create an intelligent agent that can integrate with existing business processes and assist managers with routine procurement activities while keeping humans in control of final decisions.
 
-This project demonstrates how modern AI agents, combined with affordable cloud AI services such as Gemini, can deliver enterprise-like procurement automation at a fraction of the cost. Organizations can leverage Gemini Enterprise plans to build intelligent procurement workflows without investing in expensive ERP ecosystems.
+The system follows a Human-in-the-Loop (HITL) approach, where AI agents perform repetitive tasks such as inventory monitoring, risk assessment, order recommendation, natural-language interpretation, and purchase-order generation, while procurement managers remain responsible for approving, rejecting, or modifying procurement actions.
 
-A key design principle of this system is the **Human-in-the-Loop (HITL) AI approach**. The objective is not to replace procurement managers but to augment their decision-making capabilities. AI agents handle repetitive operational tasks such as inventory monitoring, risk assessment, email generation, and supplier communication, while humans retain complete control over procurement decisions through approval, rejection, or modification workflows.
+To demonstrate the concept, this project uses an imaginary Airline Supply Chain Management company as a case study. The aviation domain provides a realistic environment because it involves critical spare parts, strict operational requirements, multiple suppliers, and time-sensitive procurement decisions.
 
-Although the proposed solution is industry-agnostic and can be adapted for manufacturing, warehousing, retail logistics, healthcare supply chains, and maintenance operations, this implementation uses an imaginary Airline Supply Chain Management company as a case study. The aviation domain provides an excellent demonstration environment because it involves critical spare parts, strict operational requirements, and time-sensitive procurement decisions.
-
-In a real-world deployment, the procurement agent would connect directly to live databases or ERP systems to continuously monitor inventory levels and automatically trigger procurement workflows based on scheduled intervals or event-driven mechanisms. Due to limited infrastructure and resource constraints within this project, a static dataset was created to simulate real business operations. The prototype uses:
+Due to limited infrastructure and resources, the prototype uses a static dataset that simulates an enterprise inventory database, consisting of:
 
 - 22 different aircraft parts
 - 6 different suppliers
-- Static inventory datasets representing an imaginary enterprise database
+- Business-specific reorder thresholds and stock levels
 
-The current implementation operates through command-based execution, where procurement runs are triggered manually for demonstration purposes. However, the underlying architecture supports scheduled execution and real-time data integration with minimal modifications, enabling organizations to transition from prototype to production environments.
+In a production environment, the same agent architecture could connect directly to real-time databases, ERP systems, or APIs and execute on scheduled intervals or event-driven triggers. For demonstration purposes, the current implementation uses command-based execution to initiate procurement runs manually.
 
-The system continuously monitors inventory levels, evaluates business risks associated with low-stock items, notifies managers through Telegram, understands natural-language instructions such as *"add 10 more units and make it urgent"*, generates professional purchase-order emails using Gemini, and maintains a human-in-the-loop approval process to ensure that final procurement decisions always remain under managerial control.
+The Procurement Agent continuously monitors inventory levels, evaluates business risks, notifies managers through Telegram, understands natural-language instructions such as "add 10 more units and make it urgent," generates professional purchase-order emails using Gemini, and coordinates supplier communication while ensuring that all final procurement decisions remain under human supervision.
 
-Ultimately, the goal is to make intelligent procurement support accessible to organizations that traditionally could not justify enterprise-scale solutions, providing a practical pathway toward AI-enabled logistics and supply chain automation.
+The objective is not to replace procurement professionals, but to augment their capabilities by reducing manual effort, improving response times, and making intelligent procurement assistance accessible to organizations with limited resources.
 
 ---
 
@@ -46,7 +44,7 @@ These inefficiencies can increase operational risks and potentially lead to Airc
 
 ## 🚀 Solution
 
-This project introduces an AI-driven procurement platform that:
+This project introduces an AI-driven procurement Agent that:
 
 - Detects low-stock inventory items automatically
 - Calculates business-aware risk levels for aviation components

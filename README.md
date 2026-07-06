@@ -363,7 +363,10 @@ Supplier responses can be processed directly from the dashboard using the
 Alternatively:
 
 ```bash
+
 uv run python src/check_supplier_emails.py
+
+```
 ---
 
 ## 🧪 Example Manager Instructions
@@ -382,6 +385,7 @@ Set quantity to 25
 Add another 5 units for next month's maintenance
 
 Order 15 more and mark as highest priority
+
 ```
 ---
 ## 🚀 Future Improvements

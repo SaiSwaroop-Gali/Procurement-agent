@@ -1,6 +1,6 @@
 # ✈️ AI Procurement Agent for Airline Supply Chain Management
 
-An AI-powered, human-in-the-loop procurement system for airline spare parts management. The system continuously monitors inventory levels, identifies procurement risks, enables manager approvals through Telegram, uses Gemini to interpret natural-language procurement instructions and supplier responses, automatically issues purchase orders, and updates a real-time procurement dashboard.
+An AI-powered, human-in-the-loop procurement system for airline spare parts management. The system continuously monitors inventory levels, identifies procurement risks, enables manager approvals through Telegram, uses Gemini to interpret natural-language procurement instructions and supplier responses, automatically generates and sends standardized purchase order emails, and updates a real-time procurement dashboard.
 
 ## 🏗️ System Architecture
 
@@ -10,136 +10,139 @@ An AI-powered, human-in-the-loop procurement system for airline spare parts mana
 
 ## 📖 Project Overview
 
-The idea behind this project is to develop an AI-powered Procurement Agent that can support procurement workflows in logistics-intensive industries, particularly small and medium-sized organizations that cannot afford large-scale ERP solutions such as SAP.
+This project presents an AI-powered Procurement Agent designed to support procurement workflows in logistics-intensive industries, particularly small and medium-sized organizations that may not have access to enterprise procurement platforms such as SAP.
 
-Rather than building another procurement platform, the goal is to create an intelligent agent that can integrate with existing business processes and assist managers with routine procurement activities while keeping humans in control of final decisions.
+Rather than replacing existing procurement systems, the objective is to develop an intelligent assistant that integrates with existing business processes, automates repetitive procurement tasks, and supports procurement managers in making faster and more informed decisions while keeping humans in control of all final procurement actions.
 
-The system follows a Human-in-the-Loop (HITL) approach, where AI agents perform repetitive tasks such as inventory monitoring, risk assessment, order recommendation, natural-language interpretation, and purchase-order generation, while procurement managers remain responsible for approving, rejecting, or modifying procurement actions.
+The solution follows a **Human-in-the-Loop (HITL)** architecture, where AI is applied only to tasks that require reasoning and natural-language understanding, while deterministic business operations remain rule-based for reliability and auditability. The system continuously monitors inventory levels, evaluates procurement risks, recommends replenishment quantities, interprets manager instructions written in natural language, processes supplier responses received via email, and maintains an up-to-date procurement dashboard. Procurement managers retain full authority to approve, reject, or modify every purchase request before an order is issued.
 
-To demonstrate the concept, this project uses an imaginary Airline Supply Chain Management company as a case study. The aviation domain provides a realistic environment because it involves critical spare parts, strict operational requirements, multiple suppliers, and time-sensitive procurement decisions.
+In a production environment, the same architecture could integrate directly with ERP systems, relational databases, warehouse management systems, or external APIs, allowing procurement monitoring to execute automatically through scheduled jobs or event-driven workflows. For demonstration purposes, the current implementation is initiated manually using command-based execution.
 
-Due to limited infrastructure and resources, the prototype uses a static dataset that simulates an enterprise inventory database, consisting of:
+To improve reliability, reduce inference costs, and eliminate the possibility of hallucinated procurement information, purchase-order emails are generated using deterministic templates, while Gemini is reserved for tasks requiring reasoning and natural-language understanding.
 
-- 22 different aircraft parts
-- 6 different suppliers
-- Business-specific reorder thresholds and stock levels
+To demonstrate the concept, the project uses a fictional **Airline Supply Chain Management** company as a case study. The aviation industry provides a realistic scenario because aircraft maintenance depends on the timely availability of critical spare parts, strict operational requirements, multiple suppliers, and time-sensitive procurement decisions.
 
-In a production environment, the same agent architecture could connect directly to real-time databases, ERP systems, or APIs and execute on scheduled intervals or event-driven triggers. For demonstration purposes, the current implementation uses command-based execution to initiate procurement runs manually.
+Due to limited infrastructure and the scope of the prototype, the system operates on a static dataset that simulates an enterprise inventory database containing:
 
-The Procurement Agent continuously monitors inventory levels, evaluates business risks, notifies managers through Telegram, understands natural-language instructions such as "add 10 more units and make it urgent," generates professional purchase-order emails using Gemini, and coordinates supplier communication while ensuring that all final procurement decisions remain under human supervision.
+- **22 aircraft spare parts**
+- **6 approved suppliers**
+- **Business-specific stock levels and reorder thresholds**
 
-The objective is not to replace procurement professionals, but to augment their capabilities by reducing manual effort, improving response times, and making intelligent procurement assistance accessible to organizations with limited resources.
+**📌 Problem Statement**
 
----
+Airline maintenance operations depend on the timely availability of critical spare parts. Traditional procurement processes are often manual, fragmented, and slow, resulting in delayed purchasing decisions, limited visibility, and increased operational risk. These inefficiencies can contribute to costly **Aircraft on Ground (AOG)** situations when critical components are unavailable.
 
-## 📌 Problem Statement
 
-Airline maintenance operations depend on timely availability of critical spare parts. Traditional procurement workflows often involve:
+This project introduces an **AI-powered, Human-in-the-Loop Procurement Agent** that combines business automation with intelligent decision support while ensuring managers retain full control over procurement decisions.
 
-- Manual inventory monitoring
-- Delayed procurement approvals
-- Static reorder policies
-- Slow supplier communication
-- Limited visibility into procurement activities
+The system:
 
-These inefficiencies can increase operational risks and potentially lead to Aircraft on Ground (AOG) situations.
-
----
-
-## 🚀 Solution
-
-This project introduces an AI-driven procurement Agent that:
-
-- Detects low-stock inventory items automatically
-- Calculates business-aware risk levels for aviation components
-- Sends approval requests through Telegram
-- Supports human-in-the-loop decision making
-- Understands natural-language manager instructions
-- Dynamically adjusts order quantities
-- Generates professional purchase-order emails using Gemini
-- Sends emails automatically via Gmail
-- Provides real-time analytics through Streamlit dashboards
+- Continuously monitors inventory levels for low-stock items
+- Evaluates procurement risk using business-specific rules
+- Notifies procurement managers through Telegram
+- Supports Human-in-the-Loop (HITL) approval workflows
+- Uses Gemini to interpret natural-language manager instructions
+- Dynamically adjusts order quantities based on manager intent
+- Automatically generates standardized purchase-order emails
+- Sends purchase orders through Gmail using SMTP
+- When supplier sends the order confirmation.
+- Reads supplier responses from Gmail using IMAP
+- Uses Gemini to extract supplier decisions and expected delivery dates
+- Updates a centralized SQLite database
+- Provides real-time procurement monitoring through an interactive Streamlit dashboard
 
 ---
-
-## 🤖 Multi-Agent Architecture
-
-```text
-Inventory Monitoring Agent
-        ↓
-Risk Assessment Agent
-        ↓
-Telegram Approval Agent
-        ↓
-Manager Interpretation Agent
-        ↓
-Email Generation Agent
-        ↓
-Gmail Delivery Agent
-        ↓
-Streamlit Analytics Dashboard
-```
-
----
-
-## ✨ Features
+## ✨ Key Features
 
 ### 📦 Inventory Monitoring
 
-- Automatic low-stock detection
-- Business-specific reorder recommendations
+- Automatically detects low-stock aircraft spare parts
+- Generates business-specific reorder recommendations
+- Monitors inventory against configurable reorder thresholds
+
+---
 
 ### ⚠️ Risk Assessment
 
-- Critical aviation component prioritization
+- Business-aware procurement risk evaluation
 - High, Medium, and Low risk classification
+- Prioritizes critical aviation components
 
-### 👨‍💼 Human-in-the-Loop Approvals
+---
 
-- Telegram approval workflow
-- Approve, reject, or modify procurement requests
+### 👨‍💼 Human-in-the-Loop Procurement
+
+- Telegram-based procurement approval workflow
+- Managers can approve, reject, or modify purchase requests
+- Ensures all procurement decisions remain under human control
+
+---
 
 ### 🧠 AI Manager Interpretation
 
-Managers can provide natural-language instructions such as:
+Procurement managers can provide natural-language instructions such as:
 
 - Add 10 more units
 - Double the quantity
 - Make it urgent
-- Set quantity to 25
+- Set quantity to 25 units
 
-Gemini interprets these instructions and updates procurement decisions accordingly.
-
-### 📧 AI Email Generation
-
-- Professional purchase-order emails
-- Dynamic urgency handling
-- Automatic Gmail integration
-
-### 📊 Dashboard Analytics
-
-- KPI cards
-- Supplier distribution
-- Risk analysis
-- Timeline analysis
-- Search and filtering
-- CSV export
+Gemini interprets these instructions and determines the final procurement quantity and priority before the purchase order is generated.
 
 ---
 
-## 🛠 Technology Stack
+### 📧 Automated Purchase Order Generation
 
-| Component | Technology |
+- Standardized purchase-order generation
+- Dynamic quantity adjustment based on manager decisions
+- Automatic email delivery using Gmail SMTP
+- Purchase Order ID tracking for supplier communication
+
+---
+
+### 📬 AI Supplier Response Processing
+
+- Reads supplier emails using Gmail IMAP
+- Uses Gemini to interpret supplier responses
+- Extracts supplier acceptance status
+- Identifies expected delivery dates
+- Updates the procurement database automatically
+
+---
+
+### 📊 Interactive Procurement Dashboard
+
+The interactive Streamlit dashboard provides:
+
+- 📦 Procurement KPI cards
+- 📋 Procurement request overview
+- 📦 Current stock and ordered quantity tracking
+- 🏭 Supplier status and expected delivery date tracking
+- ⚠️ Risk level monitoring and distribution analytics
+- 📊 Supplier and procurement status distribution charts
+- 📈 Procurement timeline visualization
+- 🔍 Search and filtering by part, supplier, status, and risk level
+- 📄 Detailed procurement request view
+- 📥 CSV report export
+- 🖨️ Dashboard printing
+- 📧 One-click supplier response processing
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technology |
 |-----------|------------|
-| Programming Language | Python |
-| AI Models | Gemini 2.5 Flash |
-| Messaging | Telegram Bot API |
+| Programming Language | Python 3.13 |
+| AI Models | Google Gemini 2.5 Flash |
 | Database | SQLite |
 | Dashboard | Streamlit |
-| Visualization | Plotly |
+| Data Visualization | Plotly |
 | Data Processing | Pandas |
+| Messaging | Telegram Bot API |
+| Email Delivery | Gmail SMTP |
+| Email Processing | Gmail IMAP |
 | Environment Management | uv |
-| Email Service | Gmail SMTP |
 
 ---
 
@@ -147,31 +150,68 @@ Gemini interprets these instructions and updates procurement decisions according
 
 ```text
 Procurement-agent/
-
+│
 ├── data/
-│   ├── inventory.csv
+│   ├── airline_inventory_parts.csv
+│   ├── airline_suppliers_list.csv
 │   └── procurement.db
 │
 ├── src/
-│   ├── procurement_agent.py
-│   ├── telegram_listener.py
-│   ├── email_agent.py
-│   ├── manager_agent.py
-│   ├── gmail_tool.py
-│   ├── notification_tool.py
-│   ├── risk_utils.py
-│   ├── request_store.py
-│   ├── database.py
-│   ├── supplier_tool.py
-│   ├── inventory_tool.py
-│   ├── order_manager.py
-│   └── ...
+│   ├── procurement_agent.py          # Main procurement workflow
+│   ├── telegram_listener.py          # Human-in-the-Loop approval workflow
+│   ├── notification_tool.py          # Telegram notifications
+│   ├── manager_agent.py              # Gemini manager instruction interpreter
+│   ├── email_tool.py                 # Purchase order generation
+│   ├── gmail_tool.py                 # Gmail SMTP integration
+│   ├── check_supplier_emails.py      # Reads supplier emails (IMAP)
+│   ├── supplier_response_agent.py    # Gemini supplier response interpreter
+│   ├── supplier_tool.py              # Supplier lookup utilities
+│   ├── inventory_tool.py             # Inventory operations
+│   ├── order_manager.py              # Order recommendation logic
+│   ├── risk_utils.py                 # Risk assessment
+│   ├── request_store.py              # SQLite CRUD operations
+│   ├── database.py                   # Database initialization
+│   ├── user_state.py                 # Telegram conversation state
+│   └── models.py                     # Procurement request model
 │
-├── dashboard.py
+├── dashboard.py                      # Streamlit dashboard
 ├── requirements.txt
-├── .env.
+├── .env.example
 └── README.md
 ```
+---
+
+## 🛠️ Agent Tools
+
+The AI agents interact with the environment through a collection of specialized tools. Each tool is responsible for a single business function, allowing the agents to orchestrate procurement workflows while keeping the implementation modular and maintainable.
+
+| Tool | Purpose |
+|------|---------|
+| Inventory Tool | Retrieves inventory data and identifies low-stock parts |
+| Supplier Tool | Retrieves supplier information and validates approved supplier emails |
+| Order Manager | Calculates recommended reorder quantities |
+| Notification Tool | Sends procurement approval requests through Telegram |
+| Gmail Tool | Sends purchase-order emails via Gmail SMTP |
+| Supplier Response Tool | Reads supplier responses from Gmail using IMAP |
+| Request Store | Persists procurement requests and updates in SQLite |
+
+---
+
+## Security
+
+Sensitive credentials are managed using environment variables stored in a local `.env` file.
+
+The project never stores API keys or email credentials in source code or version control.
+
+Supplier emails are validated against an approved supplier list before AI processing to prevent unrelated emails from being interpreted as procurement responses.
+
+---
+
+## Deployment
+
+The project is designed to run locally using Python and uv.
+
+Future deployments could package the application using Docker and deploy it on cloud platforms such as Azure, AWS, or Google Cloud.
 
 ---
 
@@ -180,7 +220,7 @@ Procurement-agent/
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/SaiSwaroop-Gali/Procurement-agent
 cd Procurement-agent
 ```
 
@@ -209,6 +249,74 @@ Install dependencies:
 ```bash
 uv pip install -r requirements.txt
 ```
+
+---
+---
+
+## 📋 Prerequisites
+
+Before running the project, make sure you have:
+
+- Python 3.13 or later
+- A Google Gemini API key
+- A Telegram Bot
+- A Telegram Chat ID
+- A Gmail account with 2-Step Verification enabled
+- A Gmail App Password
+- IMAP enabled for your Gmail account
+
+---
+
+## ⚙️ Service Configuration
+
+### 🤖 Google Gemini
+
+1. Create a Gemini API key from **Google AI Studio**.
+2. Copy the API key.
+3. Add it to your `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key
+```
+
+---
+
+### 💬 Telegram Bot
+
+1. Open Telegram and search for **@BotFather**.
+2. Create a new bot using the `/newbot` command.
+3. Copy the generated Bot Token.
+4. Start a conversation with your bot.
+5. Obtain your Telegram Chat ID.
+6. Add both values to your `.env` file.
+
+```env
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_CHAT_ID=your_chat_id
+```
+
+---
+
+### 📧 Gmail
+
+The system uses Gmail for:
+
+- Sending purchase-order emails (SMTP)
+- Reading supplier responses (IMAP)
+
+Setup steps:
+
+1. Enable **2-Step Verification** on your Google account.
+2. Generate a **Google App Password**.
+3. Enable **IMAP** in Gmail Settings.
+4. Configure the following variables:
+
+```env
+EMAIL_ADDRESS=your_email@gmail.com
+EMAIL_APP_PASSWORD=your_gmail_app_password
+```
+
+> **Note:** Never use your Gmail account password. Always use a Google App Password.
 
 ---
 
@@ -247,52 +355,15 @@ uv run python src/procurement_agent.py
 ```bash
 uv run streamlit run dashboard.py
 ```
+### Process Supplier Responses
 
----
+Supplier responses can be processed directly from the dashboard using the
+📧 Check Supplier Responses button.
 
-## 🔄 Example Workflow
+Alternatively:
 
-```text
-1. Inventory levels fall below reorder thresholds.
-
-2. Procurement Agent generates requests.
-
-3. Telegram bot sends approval notifications.
-
-4. Manager approves, rejects, or modifies requests.
-
-5. Gemini interprets manager instructions.
-
-6. AI generates purchase-order emails.
-
-7. Gmail sends supplier notifications.
-
-8. Dashboard updates in real time.
-```
-
----
-
-## 📈 Dashboard Features
-
-The Streamlit dashboard provides:
-
-- Total Requests KPI
-- Approved Requests KPI
-- Rejected Requests KPI
-- Emails Sent KPI
-- High Risk KPI
-- Supplier Distribution Charts
-- Status Distribution Charts
-- Risk Analysis Charts
-- Order Timeline Analysis
-- Search Functionality
-- Status Filters
-- Risk Filters
-- CSV Export
-- Request Details View
-- AI Analysis Display
-- Manager Instructions Display
-
+```bash
+uv run python src/check_supplier_emails.py
 ---
 
 ## 🧪 Example Manager Instructions
@@ -312,19 +383,20 @@ Add another 5 units for next month's maintenance
 
 Order 15 more and mark as highest priority
 ```
-
 ---
-
 ## 🚀 Future Improvements
 
-- Docker deployment
-- Google ADK integration
-- MCP server support
-- Supplier performance analytics
-- Email history tracking
-- Role-based authentication
-- Cloud deployment
-- Multi-user approval workflows
+Potential enhancements for future versions of the project include:
+
+- 🐳 Containerized deployment using Docker
+- ☁️ Cloud deployment on Azure, AWS, or Google Cloud
+- 🔐 User authentication and role-based access control
+- 👥 Multi-user procurement approval workflows
+- 📈 Supplier performance analytics and vendor scoring
+- 🔄 Integration with ERP systems (e.g., SAP, Microsoft Dynamics, Oracle)
+- 📡 Event-driven procurement using real-time inventory updates
+- 📱 Multi-channel notifications (Microsoft Teams, Slack, WhatsApp)
+- 📊 Predictive inventory forecasting using historical procurement data
 
 ---
 

@@ -1,6 +1,10 @@
 # ✈️ AI Procurement Agent for Airline Supply Chain Management
 
-An AI-powered, human-in-the-loop procurement system that monitors inventory levels, assesses business risk, enables manager approvals through Telegram, interprets natural-language instructions using Gemini, and automatically generates supplier purchase orders.
+An AI-powered, human-in-the-loop procurement system for airline spare parts management. The system continuously monitors inventory levels, identifies procurement risks, enables manager approvals through Telegram, uses Gemini to interpret natural-language procurement instructions and supplier responses, automatically issues purchase orders, and updates a real-time procurement dashboard.
+
+## 🏗️ System Architecture
+
+![System Architecture](images/system_architecture.png)
 
 ---
 

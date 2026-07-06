@@ -55,6 +55,21 @@ class NotificationTool:
 
     def format_message(self, request):
 
+        risk_emoji = {
+
+            "HIGH": "🔴",
+
+            "MEDIUM": "🟡",
+
+            "LOW": "🟢"
+
+        }
+
+        risk_display = (
+            f"{risk_emoji.get(request.risk_level, '⚪')} "
+            f"{request.risk_level}"
+        )
+
         return f"""
 ⚠️ PROCUREMENT REQUEST
 
@@ -72,6 +87,9 @@ Current Stock:
 
 Recommended Order:
 {request.recommended_order}
+
+Risk Category:
+{risk_display}
 
 Supplier:
 {request.supplier_name}

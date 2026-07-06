@@ -2,6 +2,7 @@ import sqlite3
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+from src.check_supplier_emails import check_supplier_emails
 
 
 DB_PATH = "data/procurement.db"
@@ -42,6 +43,19 @@ st.markdown(
     "Human-in-the-loop procurement system powered by AI"
 )
 
+if st.button(
+    "📥 Check Supplier Responses"
+):
+
+    check_supplier_emails()
+
+    st.cache_data.clear()
+
+    st.success(
+        "Supplier responses processed successfully."
+    )
+
+    st.rerun()
 
 if df.empty:
 
@@ -93,6 +107,7 @@ with col3:
             ]
         )
     )
+
 
 with col4:
 
@@ -155,7 +170,6 @@ with filter_col1:
         [
             "ALL",
             "PENDING_APPROVAL",
-            "APPROVED",
             "REJECTED",
             "EMAIL_SENT",
             "MODIFICATION_REQUESTED"
@@ -214,6 +228,195 @@ if risk_filter != "ALL":
 
 st.divider()
 
+
+# ==================================================
+# REQUEST TABLE
+# ==================================================
+
+st.subheader("📋 Procurement Requests")
+
+
+display_columns = [
+
+    "request_id",
+
+    "part_name",
+
+    "current_stock",
+
+    "recommended_order",
+
+    "ordered_quantity",
+
+    "supplier_name",
+
+    "risk_level",
+
+    "status",
+
+    "supplier_status",
+
+    "expected_delivery_date"
+]
+
+
+st.dataframe(
+    filtered_df[
+        display_columns
+    ],
+    use_container_width=True
+)
+
+
+st.divider()
+
+
+# ==================================================
+# REQUEST DETAILS
+# ==================================================
+
+st.subheader("📄 Request Details")
+
+
+if not filtered_df.empty:
+
+    selected_request = st.selectbox(
+        "Select Request",
+        filtered_df["request_id"]
+    )
+
+
+    request = filtered_df[
+        filtered_df["request_id"]
+        == selected_request
+    ].iloc[0]
+
+
+    left, right = st.columns(2)
+
+
+    with left:
+
+        st.markdown(
+            "### 📦 Part Information"
+        )
+
+        st.write(
+            f"**Part Name:** {request['part_name']}"
+        )
+
+        st.write(
+            f"**Current Stock:** {request['current_stock']}"
+        )
+
+        st.write(
+            f"**Recommended Order:** {request['recommended_order']}"
+        )
+
+        st.write(
+            f"**Risk Level:** {request['risk_level']}"
+        )
+
+
+    with right:
+
+        st.markdown(
+        "### 🏭 Supplier Information"
+        )
+
+        st.write(
+            f"**Supplier:** {request['supplier_name']}"
+        )
+
+        st.write(
+            f"**Supplier Email:** {request['supplier_email']}"
+        )
+
+        st.write(
+            f"**Procurement Status:** {request['status']}"
+        )
+
+        st.write(
+            f"**Supplier Status:** {request['supplier_status']}"
+        )
+
+        st.write(
+            f"**Expected Delivery Date:** "
+            f"{request['expected_delivery_date']}"
+        )
+
+        st.write(
+            f"**Supplier Response:** "
+            f"{request['supplier_response']}"
+        )
+
+        st.write(
+            f"**Created At:** {request['created_at']}"
+        )
+
+
+st.divider()
+
+
+# ==================================================
+# RECENT ACTIVITY
+# ==================================================
+
+st.subheader("📝 Recent Activity")
+
+
+recent = df.head(5)
+
+
+for _, row in recent.iterrows():
+
+    st.info(
+        f"""
+{row['status']}
+
+📦 {row['part_name']}
+
+🏭 {row['supplier_name']}
+"""
+    )
+
+
+st.divider()
+
+
+# ==================================================
+# SUPPLIER LEADERBOARD
+# ==================================================
+
+st.subheader("🏆 Supplier Leaderboard")
+
+
+supplier_stats = (
+
+    df.groupby(
+        "supplier_name"
+    )
+
+    .size()
+
+    .reset_index(
+        name="orders"
+    )
+
+    .sort_values(
+        by="orders",
+        ascending=False
+    )
+)
+
+
+st.dataframe(
+    supplier_stats,
+    use_container_width=True
+)
+
+
+st.divider()
 
 # ==================================================
 # CHARTS
@@ -409,180 +612,10 @@ st.plotly_chart(
 
 st.divider()
 
-
-# ==================================================
-# SUPPLIER LEADERBOARD
-# ==================================================
-
-st.subheader("🏆 Supplier Leaderboard")
-
-
-supplier_stats = (
-
-    df.groupby(
-        "supplier_name"
-    )
-
-    .size()
-
-    .reset_index(
-        name="orders"
-    )
-
-    .sort_values(
-        by="orders",
-        ascending=False
-    )
-)
-
-
-st.dataframe(
-    supplier_stats,
-    use_container_width=True
-)
-
-
-st.divider()
-
-
-# ==================================================
-# REQUEST TABLE
-# ==================================================
-
-st.subheader("📋 Procurement Requests")
-
-
-display_columns = [
-
-    "request_id",
-
-    "part_name",
-
-    "current_stock",
-
-    "recommended_order",
-
-    "supplier_name",
-
-    "risk_level",
-
-    "status"
-]
-
-
-st.dataframe(
-    filtered_df[
-        display_columns
-    ],
-    use_container_width=True
-)
-
-
-st.divider()
-
-
-# ==================================================
-# REQUEST DETAILS
-# ==================================================
-
-st.subheader("📄 Request Details")
-
-
-if not filtered_df.empty:
-
-    selected_request = st.selectbox(
-        "Select Request",
-        filtered_df["request_id"]
-    )
-
-
-    request = filtered_df[
-        filtered_df["request_id"]
-        == selected_request
-    ].iloc[0]
-
-
-    left, right = st.columns(2)
-
-
-    with left:
-
-        st.markdown(
-            "### 📦 Part Information"
-        )
-
-        st.write(
-            f"**Part Name:** {request['part_name']}"
-        )
-
-        st.write(
-            f"**Current Stock:** {request['current_stock']}"
-        )
-
-        st.write(
-            f"**Recommended Order:** {request['recommended_order']}"
-        )
-
-        st.write(
-            f"**Risk Level:** {request['risk_level']}"
-        )
-
-
-    with right:
-
-        st.markdown(
-            "### 🏭 Supplier Information"
-        )
-
-        st.write(
-            f"**Supplier:** {request['supplier_name']}"
-        )
-
-        st.write(
-            f"**Supplier Email:** {request['supplier_email']}"
-        )
-
-        st.write(
-            f"**Status:** {request['status']}"
-        )
-
-        st.write(
-            f"**Created At:** {request['created_at']}"
-        )
-
-
-st.divider()
-
-
-# ==================================================
-# RECENT ACTIVITY
-# ==================================================
-
-st.subheader("📝 Recent Activity")
-
-
-recent = df.head(5)
-
-
-for _, row in recent.iterrows():
-
-    st.info(
-        f"""
-{row['status']}
-
-📦 {row['part_name']}
-
-🏭 {row['supplier_name']}
-"""
-    )
-
-
-st.divider()
-
-
 # ==================================================
 # EXPORT CSV
 # ==================================================
+
 
 csv = filtered_df.to_csv(
     index=False
@@ -606,3 +639,41 @@ if st.button("🔄 Refresh Dashboard"):
     st.cache_data.clear()
 
     st.rerun()
+
+# ==================================================
+# Print
+# ==================================================
+
+st.components.v1.html(
+    """
+    <body style="margin: 0; padding: 0; overflow: hidden;">
+        <button
+            onclick="window.parent.print();"
+            style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #FFFFFF;
+                color: #31333F;
+                border: 1px solid rgba(49, 51, 63, 0.2);
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 16px;
+                font-family: Source Sans Pro, sans-serif;
+                cursor: pointer;
+                font-weight: 400;
+                line-height: 1.2;
+                transition: border-color 0.2s, color 0.2s;
+                box-sizing: border-box;
+                width: auto;
+                height: 42px;
+            "
+            onmouseover="this.style.borderColor='#FF4B4B'; this.style.color='#FF4B4B';"
+            onmouseout="this.style.borderColor='rgba(49, 51, 63, 0.2)'; this.style.color='#31333F';"
+        >
+            <span style="margin-right: 10px; font-size: 16px; display: inline-block; transform: translateY(-1px);">🖨️</span> Print Dashboard
+        </button>
+    </body>
+    """,
+    height=45
+)

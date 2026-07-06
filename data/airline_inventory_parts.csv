@@ -1,23 +1,23 @@
 part_id,part_name,current_stock,reorder_threshold,supplier_id
 P001,Brake Pad,15,10,S001
-P002,Temperature Sensor,15,20,S002
+P002,Temperature Sensor,15,10,S002
 P003,Hydraulic Pump,8,5,S001
 P004,Engine Filter,50,25,S003
 P005,Cabin Air Filter,35,20,S003
 P006,Altimeter,12,5,S004
-P007,LED Navigation Light,60,20,S005
-P008,Oxygen Mask Pack,120,50,S006
-P009,Fuel Injector Nozzle,14,10,S002
-P010,Main Landing Gear Tire,6,8,S001
+P007,LED Navigation Light,60,40,S005
+P008,Oxygen Mask Pack,120,80,S006
+P009,Fuel Injector Nozzle,14,12,S002
+P010,Main Landing Gear Tire,6,5,S001
 P011,Nose Wheel Tire,9,6,S001
 P012,Avionics Cooling Fan,22,15,S004
-P013,Cockpit Window Seal,30,15,S005
+P013,Cockpit Window Seal,30,25,S005
 P014,Thrust Reverser Actuator,4,2,S002
 P015,APU Spark Plug,40,30,S003
-P016,Seatbelt Buckle Assembly,85,40,S006
-P017,Pitot Tube,11,15,S004
-P018,Emergency Exit Light Battery,55,30,S005
+P016,Seatbelt Buckle Assembly,85,70,S006
+P017,Pitot Tube,11,5,S004
+P018,Emergency Exit Light Battery,55,40,S005
 P019,Hydraulic Fluid Canister,70,50,S001
 P020,Engine Oil Pressure Switch,18,10,S002
-P021,Galley Coffee Maker Element,13,15,S006
+P021,Galley Coffee Maker Element,13,11,S006
 P022,Flight Data Recorder Battery,7,5,S004

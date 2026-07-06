@@ -18,14 +18,18 @@ def save_request(request):
         part_name,
         current_stock,
         recommended_order,
+        ordered_quantity,
         supplier_name,
         supplier_email,
         ai_analysis,
         status,
         manager_instructions,
-        risk_level
+        risk_level,
+        supplier_status,
+        expected_delivery_date,
+        supplier_response
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
 
         request.request_id,
@@ -36,6 +40,9 @@ def save_request(request):
         request.current_stock,
         request.recommended_order,
 
+        # Initially 0
+        0,
+
         request.supplier_name,
         request.supplier_email,
 
@@ -45,7 +52,13 @@ def save_request(request):
 
         request.manager_instructions,
 
-        request.risk_level
+        request.risk_level,
+
+        "PENDING",
+
+        None,
+
+        None
     ))
 
     conn.commit()
@@ -79,20 +92,29 @@ def get_request(request_id):
         "part_name": row[2],
 
         "current_stock": row[3],
+
         "recommended_order": row[4],
 
-        "supplier_name": row[5],
-        "supplier_email": row[6],
+        "ordered_quantity": row[5],
 
-        "ai_analysis": row[7],
+        "supplier_name": row[6],
+        "supplier_email": row[7],
 
-        "status": row[8],
+        "ai_analysis": row[8],
 
-        "manager_instructions": row[9],
+        "status": row[9],
 
-        "risk_level": row[10],
+        "manager_instructions": row[10],
 
-        "created_at": row[11]
+        "risk_level": row[11],
+
+        "supplier_status": row[12],
+
+        "expected_delivery_date": row[13],
+
+        "supplier_response": row[14],
+
+        "created_at": row[15]
     }
 
 
@@ -128,6 +150,61 @@ def update_manager_instructions(
     """, (
 
         instructions,
+        request_id
+
+    ))
+
+    conn.commit()
+    conn.close()
+
+
+def update_ordered_quantity(
+    request_id,
+    ordered_quantity
+):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    UPDATE procurement_requests
+    SET ordered_quantity = ?
+    WHERE request_id = ?
+    """, (
+
+        ordered_quantity,
+        request_id
+
+    ))
+
+    conn.commit()
+    conn.close()
+
+
+def update_supplier_response(
+    request_id,
+    supplier_status,
+    expected_delivery_date,
+    supplier_response
+):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    UPDATE procurement_requests
+    SET
+        supplier_status = ?,
+        expected_delivery_date = ?,
+        supplier_response = ?
+    WHERE request_id = ?
+    """, (
+
+        supplier_status,
+        expected_delivery_date,
+        supplier_response,
         request_id
 
     ))

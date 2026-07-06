@@ -78,9 +78,20 @@ Return ONLY valid JSON:
             contents=prompt
         )
 
-        return json.loads(
-            response.text.strip()
-        )
+        print("RAW RESPONSE:")
+        print(repr(response.text))
+
+        text = response.text.strip()
+
+        text = text.replace("```json", "")
+        text = text.replace("```", "")
+        text = text.strip()
+
+        return json.loads(text)
+
+        # return json.loads(
+        #     response.text.strip()
+        # )
 
     except Exception as e:
 

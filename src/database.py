@@ -20,6 +20,7 @@ def init_db():
 
         current_stock INTEGER,
         recommended_order INTEGER,
+        ordered_quantity INTEGER,
 
         supplier_name TEXT,
         supplier_email TEXT,
@@ -31,6 +32,12 @@ def init_db():
         manager_instructions TEXT DEFAULT '',
 
         risk_level TEXT DEFAULT 'MEDIUM',
+
+        supplier_status TEXT DEFAULT 'PENDING',
+
+        expected_delivery_date TEXT,
+
+        supplier_response TEXT,
 
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )

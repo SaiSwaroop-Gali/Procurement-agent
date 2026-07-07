@@ -404,14 +404,6 @@ Potential enhancements for future versions of the project include:
 
 ---
 
-## 🎥 Demo Video
-
-YouTube Link:
-
-Coming Soon
-
----
-
 ## 📜 License
 
 This project is developed for educational, research, and demonstration purposes.

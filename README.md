@@ -340,11 +340,18 @@ EMAIL_APP_PASSWORD=your_app_password
 
 ### ⚠️ Important
 
-Before running the system, modify the **`reorder_threshold`** value in `data/airline_inventory_parts.csv` so that it is **higher than the `current_stock`** value for the desired inventory item.
+## ⚠️ Important
 
-This simulates a low-stock condition and triggers the Procurement Agent to generate a procurement request. 
+This prototype uses a static CSV dataset to **mimic real-time inventory updates**.
 
-**Don't forget to save the CSV file before running the commands.**
+To simulate a low-stock event:
+
+1. Open `data/airline_inventory_parts.csv`.
+2. Set the **`reorder_threshold`** higher than the corresponding **`current_stock`** value for the part you want to test.
+3. Save the file.
+4. Run the Procurement Agent.
+
+The agent will interpret this change as inventory dropping below the reorder threshold and automatically generate a procurement request, mimicking how a production system would respond to real-time inventory updates from an ERP or warehouse database.
 
 ### Start the Telegram Listener
 

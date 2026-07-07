@@ -338,6 +338,14 @@ EMAIL_APP_PASSWORD=your_app_password
 
 ## ▶️ Running the System
 
+### ⚠️ Important
+
+Before running the system, modify the **`reorder_threshold`** value in `data/airline_inventory_parts.csv` so that it is **higher than the `current_stock`** value for the desired inventory item.
+
+This simulates a low-stock condition and triggers the Procurement Agent to generate a procurement request. 
+
+**Don't forget to save the CSV file before running the commands.**
+
 ### Start the Telegram Listener
 
 ```bash

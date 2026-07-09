@@ -1,14 +1,14 @@
 part_id,part_name,current_stock,reorder_threshold,supplier_id
-P001,Brake Pad,15,10,S001
-P002,Temperature Sensor,15,10,S002
+P001,Brake Pad,15,20,S001
+P002,Temperature Sensor,15,18,S002
 P003,Hydraulic Pump,8,5,S001
 P004,Engine Filter,50,25,S003
 P005,Cabin Air Filter,35,20,S003
-P006,Altimeter,12,5,S004
+P006,Altimeter,12,15,S004
 P007,LED Navigation Light,60,40,S005
 P008,Oxygen Mask Pack,120,80,S006
 P009,Fuel Injector Nozzle,14,12,S002
-P010,Main Landing Gear Tire,6,5,S001
+P010,Main Landing Gear Tire,6,15,S001
 P011,Nose Wheel Tire,9,6,S001
 P012,Avionics Cooling Fan,22,15,S004
 P013,Cockpit Window Seal,30,25,S005

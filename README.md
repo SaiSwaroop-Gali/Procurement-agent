@@ -338,6 +338,21 @@ EMAIL_APP_PASSWORD=your_app_password
 
 ## ▶️ Running the System
 
+### ⚠️ Important
+
+## ⚠️ Important
+
+This prototype uses a static CSV dataset to **mimic real-time inventory updates**.
+
+To simulate a low-stock event:
+
+1. Open `data/airline_inventory_parts.csv`.
+2. Set the **`reorder_threshold`** higher than the corresponding **`current_stock`** value for the part you want to test.
+3. Save the file.
+4. Run the Procurement Agent.
+
+The agent will interpret this change as inventory dropping below the reorder threshold and automatically generate a procurement request, mimicking how a production system would respond to real-time inventory updates from an ERP or warehouse database.
+
 ### Start the Telegram Listener
 
 ```bash
@@ -401,14 +416,6 @@ Potential enhancements for future versions of the project include:
 - 📡 Event-driven procurement using real-time inventory updates
 - 📱 Multi-channel notifications (Microsoft Teams, Slack, WhatsApp)
 - 📊 Predictive inventory forecasting using historical procurement data
-
----
-
-## 🎥 Demo Video
-
-YouTube Link:
-
-Coming Soon
 
 ---
 

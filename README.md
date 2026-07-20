@@ -403,6 +403,10 @@ Order 15 more and mark as highest priority
 
 ```
 ---
+## 🏗️ System images
+
+![System dashboard](images/VideoProject2-ezgif.com-video-to-gif-converter.gif)
+---
 ## 🚀 Future Improvements
 
 Potential enhancements for future versions of the project include:

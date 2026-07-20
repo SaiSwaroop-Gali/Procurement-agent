@@ -407,21 +407,21 @@ Order 15 more and mark as highest priority
 
 ![System dashboard](images/VideoProject2-ezgif.com-video-to-gif-converter.gif)
 
-![System image1](images/Screenshot%2026-07-07%002206.png)
+![System image1](images/Screenshot 2026-07-07 002206.png)
 
-![System image2](images/Screenshot%2026-07-07%002848.png)
+![System image2](images/Screenshot 2026-07-07 002848.png)
 
-![System image3](images/Screenshot%2026-07-07%002308.png)
+![System image3](images/Screenshot 2026-07-07 002308.png)
 
-![System image4](images/Screenshot%2026-07-07%002435.png)
+![System image4](images/Screenshot 2026-07-07 002435.png)
 
-![System image5](images/Screenshot%2026-07-07%002741.png)
+![System image5](images/Screenshot 2026-07-07 002741.png)
 
-![System image6](images/Screenshot%2026-07-07%002112.png)
+![System image6](images/Screenshot 2026-07-07 002112.png)
 
-![System image7](images/Screenshot%2026-07-07%003250.png)
+![System image7](images/Screenshot 2026-07-07 003250.png)
 
-![System image8](images/Screenshot%2026-07-07%003440.png)
+![System image8](images/Screenshot 2026-07-07 003440.png)
 
 ---
 ## 🚀 Future Improvements
